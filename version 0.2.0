@@ -355,7 +355,6 @@ def adder(board, row, col):
 
 def rand_power_up(num, numP, scores, board, player, negate):
     x=r.randint(1, 10)
-    x=11
     power_up = ""
     neg=0
     if x==1:
