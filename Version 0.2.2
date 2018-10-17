@@ -874,15 +874,15 @@ def get_player_name(players, num, scores, board):
         except TypeError:
             exit()
         if len(name) > 0 and len(name) < 21:
-            pass
+            check = False
         else:
             error_text("Name must be between 1 and 20 characters", board)
         if name not in (x.upper() for x in players):
             players.append(name)
             scores[num - 1] = 0
-            check = False
         else:
             error_text("Name already taken", board)
+            check = True
     return players, scores
 
 def get_input():
