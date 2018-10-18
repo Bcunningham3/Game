@@ -1,0 +1,1570 @@
+"""
+Game (Name TBD)
+By: Brandon Cunningham
+Version 0.2.3
+
+Start Date: 10/17/2018
+Finish Date: 10/18/2018
+
+Added the ability to create a profile. This is done through a system where there is a file named 'Usernames.txt'
+that the program will open up, read, and store in a dictionary. The game then runs through its normal operations 
+and at the end will now show you some stats about previous games of that game mode.
+Also some bugs were added and then and then fixed. 
+And there were a few minor optimization changes.
+"""
+
+
+import turtle 
+from turtle import Turtle, Screen
+import random as r
+import time
+
+
+t = Turtle()
+s = Screen()
+
+
+turtle.tracer(0, 0)
+t.up()
+t.goto(-1000, 0)
+
+
+"""
+All numbers must stick within a 20 by 40 rectangle.
+the starting coordinates for 1 digit number is (40,30) from left hand corner.
+The starting and ending position of each of these numbers will be the bottom left hand corner of their rectangles.
+They will all start facing the right side wall and end the same direction.
+All functions draw the number/symbol that is their function name.
+"""
+
+
+def num1():
+    x = t.xcor()
+    y = t.ycor()
+    t.down()
+    t.forward(20)
+    t.backward(10)
+    t.left(90)
+    t.forward(40)
+    t.left(135)
+    t.forward(14)
+    t.up()
+    t.goto(x,y)
+    t.right(225)
+
+
+def num2():
+    x=t.xcor()
+    y=t.ycor()
+    t.down()
+    t.forward(20)
+    t.backward(20)
+    t.left(90)
+    t.forward(20)
+    t.right(90)
+    t.forward(20)
+    t.left(90)
+    t.forward(20)
+    t.left(90)
+    t.forward(20)
+    t.up()
+    t.left(180)
+    t.goto(x,y)
+
+
+def num3():
+    x = t.xcor()
+    y = t.ycor()
+    t.down()
+    t.forward(20)
+    t.left(90)
+    t.forward(20)
+    t.left(90)
+    t.forward(20)
+    t.backward(20)
+    t.right(90)
+    t.forward(20)
+    t.left(90)
+    t.forward(20)
+    t.up()
+    t.goto(x, y)
+    t.left(180)
+
+
+def num4():
+    x = t.xcor()
+    y = t.ycor()
+    t.up()
+    t.forward(17)
+    t.left(90)
+    t.down()
+    t.forward(40)
+    t.left(150)
+    t.forward(34)
+    t.left(120)
+    t.forward(20)
+    t.up()
+    t.goto(x, y)
+
+
+def num5():
+    x = t.xcor()
+    y = t.ycor()
+    t.down()
+    t.forward(20)
+    t.left(90)
+    t.forward(20)
+    t.left(90)
+    t.forward(20)
+    t.right(90)
+    t.forward(20)
+    t.right(90)
+    t.forward(20)
+    t.up()
+    t.goto(x, y)
+
+
+def num6():
+    x = t.xcor()
+    y = t.ycor()
+    t.down()
+    for z in range(4):
+        t.forward(20)
+        t.left(90)
+    t.left(90)
+    t.forward(40)
+    t.right(90)
+    t.forward(20)
+    t.up()
+    t.goto(x, y)
+
+
+def num7():
+    x = t.xcor()
+    y = t.ycor()
+    t.down()
+    t.goto(t.xcor()+20, t.ycor()+40)
+    t.backward(20)
+    t.up()
+    t.goto(x, y)
+
+
+def num8():
+    x = t.xcor()
+    y = t.ycor()
+    t.down()
+    for z in range(4):
+        t.forward(20)
+        t.left(90)
+    t.left(90)
+    t.forward(20)
+    t.right(90)
+    for z in range(4):
+        t.forward(20)
+        t.left(90)
+    t.up()
+    t.goto(x, y)
+
+
+def num9():
+    x = t.xcor()
+    y = t.ycor()
+    t.down()
+    t.forward(20)
+    t.left(90)
+    t.forward(40)
+    for z in range(3):
+        t.left(90)
+        t.forward(20)
+    t.up()
+    t.goto(x, y)
+
+
+def num0():
+    x = t.xcor()
+    y = t.ycor()
+    t.down()
+    for z in range(2):
+        t.forward(20)
+        t.left(90)
+        t.forward(40)
+        t.left(90)
+    t.up()
+    t.goto(x, y)
+
+
+def minus():
+    x = t.xcor()
+    y = t.ycor()
+    t.goto(x, y+20)
+    t.down()
+    t.forward(20)
+    t.up()
+    t.goto(x, y)
+
+
+def plus():
+    x = t.xcor()
+    y = t.ycor()
+    t.forward(10)
+    t.left(90)
+    t.forward(10)
+    t.down()
+    t.forward(20)
+    t.backward(10)
+    t.right(90)
+    t.backward(10)
+    t.forward(20)
+    t.up()
+    t.goto(x, y)
+
+
+def star():
+    t.pencolor("black")
+    x = t.xcor()
+    y = t.ycor()
+    t.forward(10)
+    t.left(90)
+    t.forward(10)
+    t.down()
+    t.forward(20)
+    t.backward(10)
+    t.right(90)
+    t.backward(10)
+    t.forward(20)
+    t.backward(10)
+    t.left(45)
+    t.forward(10)
+    t.backward(20)
+    t.forward(10)
+    t.left(90)
+    t.forward(10)
+    t.backward(20)
+    t.forward(10)
+    t.left(135)
+    t.left(90)
+    t.up()
+    t.goto(x, y)
+
+
+def draw_X():
+    x = t.xcor()
+    y = t.ycor()
+    t.pencolor("black")
+    t.forward(15)
+    t.down()
+    t.fillcolor("black")
+    t.begin_fill()
+    t.forward(5)
+    t.goto(x+5, y+40)
+    t.backward(5)
+    t.goto(x+15, y)
+    t.end_fill()
+    t.up()
+    t.backward(15)
+    t.down()
+    t.begin_fill()
+    t.forward(5)
+    t.goto(t.xcor()+15, t.ycor()+40)
+    t.backward(5)
+    t.goto(x,y)
+    t.end_fill()
+    t.up()
+
+
+def calculate(board, numP, scores, neg, player, p_spots, negate, players, mayhem):
+    """
+    This is the function that will calculate your score based on the position you've chosen.
+    :param board:
+    :param numP:
+    :param scores:
+    :param neg:
+    :param player:
+    :param p_spots:
+    :param negate:
+    :return:
+    """
+    x=True
+    n=0
+    power_up=False
+    TIMS=False
+    while x:
+        (row, col) = inputs(len(board), len(board[0]), players[player-1])
+        spot = board[row][col]
+        if spot == '$' or spot == '$-':
+            if negate[player-1] > 0:
+                TIMS=True
+            (num)=adder(board, row, col)
+            p_spots[player-1].append((row, col))
+            if num == 0:
+                num = 1
+            if neg > 0:
+                num *= -1
+            if TIMS:
+                num*=-1
+                negate[player-1]-=1
+            if spot == '$-':
+                time.sleep(.5)
+                error_text("Trap Hit!", board)
+                num=int(num*(-1.5))
+            x = False
+        elif spot == '*' or spot == '*-':
+            A = str(board[row - 1][col])[0]
+            B = str(board[row + 1][col])[0]
+            C = str(board[row][col + 1])[0]
+            D = str(board[row][col - 1])[0]
+            if ((A == '$' or A == '*') and (B == '$' or B == '*') and (C == '$' or C == '*') and (D == '$' or D == '*')) and not mayhem:
+                error_text("There must be a pre-chosen tile next to a power up in order to choose it.", board)
+            else:
+                num = adder(board, row, col)
+                p_spots[player - 1].append((row, col))
+                if negate[player - 1] > 0:
+                    TIMS = True
+                (num, scores, n, power_up, negate) = rand_power_up(num, numP, scores, board, player, negate)
+                if neg > 0:
+                    num *= -1
+                if TIMS:
+                    num *= -1
+                    negate[player - 1] -= 1
+                if spot == '*-':
+                    error_text("Trap Hit!", board)
+                    num = int(num * (-1.5))
+                if power_up == "Twice Opp":
+                    scores = twiceOpponent(num, scores, player, players)
+                    num = 0
+                t.up()
+                t.goto(row*100, col*100)
+                fill_spot("white")
+                x = False
+        elif spot == 'X':
+            error_text("You cannot choose a spot that has already been eliminated.", board)
+        else:
+            error_text("You can't choose a position that has a value, please try again.", board)
+    if n > 0 and neg > 0:
+        neg += n - 1
+    else:
+        neg += n
+    board[row][col] = num
+    return board, row, col, scores, neg, p_spots, power_up
+
+
+def adder(board, row, col):
+    x = board[row - 1][col]
+    if x == '*' or x == '$' or x == 'X' or x == '$-' or x == "*-":
+        num = 0
+    else:
+        num = x
+    x = board[row + 1][col]
+    if x != '*' and x != '$' and x != 'X' and x != '$-' and x != "*-":
+        num += x
+    x = board[row][col + 1]
+    if x != '*' and x != '$' and x != 'X' and x != '$-' and x != "*-":
+        num += x
+    x = board[row][col - 1]
+    if x != '*' and x != '$' and x != 'X' and x != '$-' and x != "*-":
+        num += x
+    return num
+
+
+def rand_power_up(num, numP, scores, board, player, negate):
+    x = r.randint(1, 14)
+    power_up = ""
+    neg = 0
+    if x==1:
+        error_text("Scored Turned Negative", board)
+        num *= -1
+    elif x==2:
+        error_text("10 subtracted from Score", board)
+        num-=10
+    elif x == 3:
+        power_up="Twice Opp"
+    elif x == 4:
+        error_text("10 added to Score", board)
+        num+=10
+    elif x == 5:
+        error_text("Score Multiplied by 2", board)
+        num*=2
+    elif x == 6:
+        power_up = 'Choose X'
+    elif x == 7:
+        neg=negOpponents(numP, board)
+    elif x == 8:
+        power_up = 'Random X'
+    elif x == 9:
+        power_up = "Trap"
+    elif x == 10:
+        error_text("Your next turn will be negated", board)
+        negate[player-1]+=1
+    elif x == 11:
+        power_up = 'Swap'
+    elif x == 12:
+        power_up = 'Gain Spot'
+    elif x == 13:
+        power_up = 'Lose Spot'
+    elif x == 14:
+        power_up = 'Betting'
+        """
+        Ideas: 
+        All implemented
+        """
+    return num, scores, neg, power_up, negate
+
+
+def trap(board, player):
+    x = True
+    error_text("Pick a spot to place a trap", board)
+    while x:
+        (row, col) = inputs(len(board), len(board[0]), player)
+        if board[row][col] == '$':
+            board[row][col] = '$-'
+            x = False
+        elif board[row][col] == '*':
+            board[row][col] = '*-'
+            x = False
+        elif board[row][col] == 'X':
+            error_text("You cannot choose a spot that has already been eliminated.", board)
+        elif board[row][col] == '*-' or board[row][col] == '$-':
+            x = False
+        else:
+            error_text("You can't choose a position that has already been chosen, please try again.", board)
+    error_text("Trap Placed", board)
+
+
+def Xout(board, scores, p_spots, player):
+    error_text("Chose a spot that will be eliminated", board)
+    boo =  True
+    while boo:
+        row=get_row(len(board)-2, player)
+        col=get_col(len(board[0])-2, player)
+        if board[row][col] != 'X':
+            boo=False
+            Xing(board, row, col, p_spots, scores)
+        else:
+            error_text("You cannot pick a spot that has already been eliminated", board)
+
+
+def Xing(board, row, col, p_spots, scores):
+    if (row, col) in p_spots[0]:
+        scores[0]-=board[row][col]
+    elif (row, col) in p_spots[1]:
+        scores[1]-=board[row][col]
+    elif (row, col) in p_spots[2]:
+        scores[2]-=board[row][col]
+    elif (row, col) in p_spots[3]:
+        scores[3]-=board[row][col]
+    board[row][col]='X'
+    display_X(row, col)
+
+
+def RandX(board, scores, p_spots, player):
+    x=int((len(board[0])-2)*(len(board)-2)*.2)
+    if x==1:
+        x=2
+    x=power_up_spots(board, x)
+    num = get_num(player, x)
+    while num > 0:
+        row = r.randint(1, len(board) - 2)
+        col = r.randint(1, len(board[0]) - 2)
+        if board[row][col] != 'X':
+            Xing(board, row, col, p_spots, scores)
+            num -= 1
+
+
+def get_num(player, x):
+    try:
+        return int(turtle.numinput(player, "Enter number of tiles to be randomly eliminated on board, between 1 and %d: " % x, 1, 1, x))
+    except TypeError:
+        exit()
+
+
+def swap(board, p_spots, scores, player):
+    error_text("Choose two spots on the board to swap Values. Enter first spot", board)
+    row1 = get_row(len(board) - 2, player)
+    col1 = get_col(len(board[0]) - 2, player)
+    error_text("Choose second spot", board)
+    row2 = get_row(len(board) - 2, player)
+    col2 = get_col(len(board[0]) - 2, player)
+    (val1, p1) = get_val(p_spots, board, scores, row1, col1)
+    (val2, p2) = get_val(p_spots, board, scores, row2, col2)
+    t.up()
+    board[row1][col1] = val2
+    board[row2][col2] = val1
+    try:
+        scores[p1] += val2
+    except TypeError:
+        pass
+    try:
+        scores[p2] += val1
+    except TypeError:
+        pass
+    if p1 > -1 and p2 == -1:
+        p_spots[p1].remove((row1, col1))
+    if p2 > -1 and p1 == -1:
+        p_spots[p2].remove((row2, col2))
+    draw_swapped(val2, p1, row1, col1)
+    draw_swapped(val1, p2, row2, col2)
+    return board, scores, p_spots
+
+
+def draw_swapped(val, p, row, col):
+    t.goto(row * 100, col * 100)
+    fill_spot("white")
+    if val != '$' and val != '$-':
+        if p == -1:
+            t.pencolor("black")
+        elif p == 0:
+            t.pencolor("red")
+        elif p == 1:
+            t.pencolor("blue")
+        elif p == 2:
+            t.pencolor("green")
+        elif p == 3:
+            t.pencolor("purple")
+        if val == '*-':
+            val = '*'
+        draw_number(row, col, val)
+
+
+def get_val(p_spots, board, scores, row1, col1):
+    p=-1
+    if (row1, col1) in p_spots[0]:
+        p=0
+        try:
+            scores[0] -= board[row1][col1]
+        except TypeError:
+            pass
+    elif (row1, col1) in p_spots[1]:
+        p=1
+        try:
+            scores[1] -= board[row1][col1]
+        except TypeError:
+            pass
+    elif (row1, col1) in p_spots[2]:
+        p=2
+        try:
+            scores[2] -= board[row1][col1]
+        except TypeError:
+            pass
+    elif (row1, col1) in p_spots[3]:
+        p=3
+        try:
+            scores[3] -= board[row1][col1]
+        except TypeError:
+            pass
+    return board[row1][col1], p
+
+
+def power_up_spots(board, x):
+    check=0
+    for y in range(1, len(board)-1):
+        for z in range(1, len(board[0])-1):
+            if board[y][z]!='X':
+                check+=1
+                if x==check:
+                    return check
+    return check
+
+
+def display_X(row, col):
+    t.up()
+    t.goto(row * 100, col * 100)
+    fill_spot("white")
+    one_digit('X')
+
+
+def negOpponents(numP, board):
+    error_text("All opponents next turns will be negative", board)
+    return numP
+
+
+def twiceOpponent(num, scores, player, players):
+        player = get_player(player, (num*2), players)
+        scores[player] -= (num*2)
+        return scores
+
+
+def betting(player, scores, numP, board, players):
+    draw_players(numP, board, scores, players)
+    try:
+        bet=int(turtle.numinput(players[player-1], "Enter the number of points you would like to bet, between 1 and 30: ", 30, 1, 30))
+    except TypeError:
+        exit()
+    scores[player-1] -= bet
+    draw_players(numP, board, scores, players)
+    time.sleep(.5)
+    bet=r.randint(0, 2*bet)
+    error_text('You won %d points from your bet.' % bet, board)
+    scores[player-1] += bet
+
+
+def random_spot(board):
+    row = r.randint(1, len(board) - 2)
+    col = r.randint(1, len(board[0]) - 2)
+    return row, col
+
+
+def Gain_Spot(board, p_spots, player, scores):
+    check = checker(board)
+    while check:
+        (row, col) = random_spot(board)
+        spot = board[row][col]
+        try:
+            if spot[0] == '$' or spot[0] == '*':
+                error_text('Gain a random spot on board.', board)
+                time.sleep(.75)
+                p_spots[player].append((row, col))
+                num = adder(board, row, col)
+                scores[player] += num
+                board[row][col] = num
+                t.up()
+                t.goto(row * 100, col * 100)
+                fill_spot('white')
+                t.pencolor(pen_color(player))
+                draw_number(row, col, num)
+                return p_spots, scores
+
+        except TypeError:
+            pass
+    return p_spots, scores
+
+
+
+def Lose_Spot(board, player, p_spots, scores):
+    error_text("Lose a random spot you own.", board)
+    time.sleep(.75)
+    spot = r.randint(0, (len(p_spots[player])-1))
+    row, col = p_spots[player][spot]
+    scores[player] -= board[row][col]
+    board[row][col] = '$'
+    t.up()
+    t.goto(row * 100, col * 100)
+    fill_spot('white')
+    return p_spots, scores
+
+
+def inputs(w, h, player):
+    """
+    Temporary input method, will later change to graphics and mouse clicking.
+    Or at least that is the plan, pygame was not working and I unfortunately
+    may not be able to get it implemented in time.
+    """
+    row=get_row(w-2, player)
+    col=get_col(h-2, player)
+    return row, col
+
+
+def get_player(player, num, players):
+    while True:
+        try:
+            name = turtle.textinput(players[player-1], "Enter name of player number who will have " + str(num) + " subtracted from their score")
+        except:
+            exit()
+        if name in players:
+            return players.index(name)
+
+
+def get_row(h, player):
+    try:
+        return int(turtle.numinput(player, "Enter column number, between 1 and %d: " % h, 1, 1, h))
+    except TypeError:
+        exit()
+
+
+def get_col(w, player):
+    try:
+        return int(turtle.numinput(player, "Enter row number, between 1 and %d: " % w, 1, 1, w))
+    except TypeError:
+        exit()
+
+
+def get_width():
+    try:
+        return int(turtle.numinput("Width", "Enter playable board width, between 3 and 10: ", 5, 3, 10))
+    except TypeError:
+        exit()
+
+def get_height():
+    try:
+        return int(turtle.numinput("Height", "Enter playable board height, between 3 and 10: ", 5, 3, 10))
+    except TypeError:
+        exit()
+
+
+def initialize_board():
+    width = get_width()
+    height = get_height()
+    w, h = width+2, height+2
+    board = [['$' for x in range(h)] for y in range(w)]
+    for x in range(w):
+        board[x][0] = 1
+        board[x][h-1] = 1
+    for x in range(h):
+        board[0][x] = 1
+        board[w-1][x] = 1
+    turtle.setworldcoordinates(-25, -130, (w*100)+30, (h*100)+80)
+    return board
+
+
+def draw_board(w, h):
+    t.up()
+    t.pencolor("black")
+    t.home()
+    t.right(90)
+    for x in range(0, w+1):
+        t.goto(x*100, 0)
+        t.down()
+        t.backward(h*100)
+        t.up()
+    t.left(90)
+    for x in range(0, h+1):
+        t.goto(0, x * 100)
+        t.down()
+        t.forward(w * 100)
+        t.up()
+    t.home()
+    fill_spot("black")
+    t.goto(0, (h-1)*100)
+    fill_spot("black")
+    t.goto((w-1)*100, 0)
+    fill_spot("black")
+    t.goto((w-1)*100, (h-1)*100)
+    fill_spot("black")
+    t.home()
+
+
+def draw_1s(w, h):
+    for x in range(1, w-1):
+        t.goto((x*100)+40, 30)
+        num1()
+        t.goto((x * 100) + 40, (h*100)-70)
+        num1()
+    for x in range(1, h-1):
+        t.goto(40, (x*100)+30)
+        num1()
+        t.goto((w*100)-60, (x * 100) + 30)
+        num1()
+    t.goto(-100,-100)
+    turtle.update()
+
+
+def fill_spot(string):
+    """
+    Draws the black corners in the game, and clears spots that are being drawn over
+    """
+    t.down()
+    t.pencolor('black')
+    t.fillcolor(string)
+    t.begin_fill()
+    for x in range(4):
+        t.forward(100)
+        t.left(90)
+    t.end_fill()
+    t.up()
+
+
+def draw_number(row, col, num):
+    """
+    Will print the score onto the drawn board
+    """
+    t.up()
+    t.goto(row*100, col*100)
+    try:
+        if num > 999:
+            num = "999+"
+        if num < -999:
+            num = "-999"
+    except TypeError:
+        pass
+    num = str(num)
+    if len(num) == 1:
+        one_digit(num)
+    elif len(num) == 2:
+        two_digit(num)
+    elif len(num) == 3:
+        three_digit(num)
+    else:
+        more_digit(num)
+    t.goto(-100,-100)
+    turtle.update()
+
+
+def one_digit(num):
+    t.forward(40)
+    t.left(90)
+    t.forward(30)
+    t.right(90)
+    draw_char(num)
+
+
+def two_digit(num):
+    t.forward(28)
+    t.left(90)
+    t.forward(30)
+    t.right(90)
+    draw_char(num[0])
+    t.forward(24)
+    draw_char(num[1])
+
+
+def three_digit(num):
+    t.forward(16)
+    t.left(90)
+    t.forward(30)
+    t.right(90)
+    draw_char(num[0])
+    t.forward(24)
+    draw_char(num[1])
+    t.forward(24)
+    draw_char(num[2])
+
+def more_digit(num):
+    t.forward(4)
+    t.left(90)
+    t.forward(30)
+    t.right(90)
+    draw_char(num[0])
+    t.forward(24)
+    draw_char(num[1])
+    t.forward(24)
+    draw_char(num[2])
+    t.forward(24)
+    draw_char(num[3])
+
+
+def draw_char(char):
+    if char == '*':
+        star()
+    elif char == '1':
+        num1()
+    elif char == '2':
+        num2()
+    elif char == '3':
+        num3()
+    elif char == '4':
+        num4()
+    elif char == '5':
+        num5()
+    elif char == '6':
+        num6()
+    elif char == '7':
+        num7()
+    elif char == '8':
+        num8()
+    elif char == '9':
+        num9()
+    elif char == '0':
+        num0()
+    elif char== '-':
+        minus()
+    elif char == '+':
+        plus()
+    elif char == 'X':
+        draw_X()
+
+
+def player_num(scores, user_pass):
+    try:
+        numP = int(turtle.numinput("Players", "Enter number of players, between 2 and 4: ", 2, 2, 4))
+    except TypeError:
+        exit()
+    t.reset()
+    players=[]
+    for x in range(numP):
+        (players, scores, user_pass) = get_player_name(players, x+1, scores, [[0]], user_pass)
+        t.reset()
+    return numP, scores, players, user_pass
+
+
+def get_player_name(players, num, scores, board, user_pass):
+    check = True
+    try:
+        while check:
+            name = turtle.textinput("Player %d" % num, "Enter your name, if you're new enter 'new'")
+            clear_error_text(board)
+            if name.upper() == 'NEW':
+                user_pass, name = new_player(user_pass, board)
+            if len(name) > 20:
+                check = True
+            elif name in players:
+                error_text("Name already taken.", board)
+            elif name not in user_pass:
+                error_text("Username not found.", board)
+            else:
+                password = turtle.textinput("Password", "Enter your password")
+                if password == user_pass[name]:
+                    players.append(name)
+                    scores[num - 1] = 0
+                    check = False
+                else:
+                    error_text("Incorrect password.", board)
+        return players, scores, user_pass
+    except TypeError:
+        exit()
+
+
+def new_player(user_pass, board):
+    check = True
+    try:
+        while check:
+            name = turtle.textinput("username", "Enter the username you would like, between 1 and 20 characters.\nEnter 'back' to go back")
+            clear_error_text(board)
+            if name.upper() == 'BACK':
+                return user_pass, "Ignore this name because I said so"
+            if 0 >= len(name) > 20:
+                error_text("Name must be between 1 and 20 characters", board)
+            elif name in user_pass:
+                error_text("Name taken, choose a different username.", board)
+            elif name.upper() == 'NEW':
+                error_text("Nice try but I already thought of that.", board)
+            else:
+                password = turtle.textinput('password', "Enter in what you would like your password to be.")
+                user_pass[name] = password
+                return user_pass, name
+    except TypeError:
+        exit()
+
+
+"""
+The file "Usernames.txt" stores the username of everyone whose played the game along with their scores for each 
+game mode and a password for them so that they are the only one who can use their username.
+The actual file is in the format:
+#of users
+Username
+Password
+Scores for normal mode
+Scores for power up mode
+scores for mayhem mode
+Username
+etc...
+That will be done for all users
+"""
+
+
+def output_prep(normal_scores, power_scores, mayhem_scores, players):
+    for name in players:
+        if name not in normal_scores:
+            normal_scores[name] = []
+            power_scores[name] = []
+            mayhem_scores[name] = []
+    return normal_scores, power_scores, mayhem_scores
+
+
+def first_num(string, pos=0):
+    output = ""
+    string = string[pos:]
+    for char in string:
+        if char.isdigit() or char == '-':
+            output += char
+            pos += 1
+        else:
+            pos += 2
+            return int(output), pos
+
+
+def all_num(string):
+    check = True
+    pos = 0
+    num_list = []
+    if string == '\n':
+        return num_list
+    while check:
+        (x, pos) = first_num(string, pos)
+        num_list.append(x)
+        if pos >= len(string):
+            return num_list
+
+
+def file_reader():
+    file=open("Usernames.txt")
+    user_pass={}
+    normal_scores = {}
+    power_scores = {}
+    mayhem_scores = {}
+    Users = file.readline()
+    (num_users, p) = first_num(Users)
+    for US in range(num_users):
+        name = file.readline()
+        name = name[:-1]
+        password = file.readline()
+        password = password[:-1]
+        user_pass[name] = password
+        normal_scores[name] = all_num(file.readline())
+        power_scores[name] = all_num(file.readline())
+        mayhem_scores[name] = all_num(file.readline())
+    return user_pass, normal_scores, power_scores, mayhem_scores
+
+
+def formatting(normal_score, power_score, mayhem_score):
+    string1 = str(normal_score)
+    string2 = str(power_score)
+    string3 = str(mayhem_score)
+    return string1[1:-1], string2[1:-1], string3[1:-1]
+
+
+def write_file(num_users, user_pass, normal_scores, power_scores, mayhem_scores):
+    outputfile = open("Usernames.txt", 'w')
+    outputfile.write(str(num_users) + "\n")
+    for name in normal_scores:
+        outputfile.write(name + "\n")
+        outputfile.write(user_pass[name] + '\n')
+        normal_string, power_string, mayhem_string = formatting(normal_scores[name], power_scores[name], mayhem_scores[name])
+        outputfile.write(normal_string + '\n')
+        outputfile.write(power_string + '\n')
+        outputfile.write(mayhem_string + '\n')
+
+
+def update_scores(game_mode, players, normal_scores, power_scores, mayhem_scores, scores):
+    x = 0
+    if game_mode == 0:
+        for name in players:
+            normal_scores[name].append(scores[x])
+            x += 1
+    elif game_mode == 1:
+        for name in players:
+            power_scores[name].append(scores[x])
+            x += 1
+    elif game_mode == 2:
+        for name in players:
+            mayhem_scores[name].append(scores[x])
+            x += 1
+    return normal_scores, power_scores, mayhem_scores
+
+
+def get_input():
+    """
+    Future ability to be able to click on the screen instead of having to type in
+    the spots you choose to play in.
+    This may turn out to be a very future thing because I cannot get pygame working.
+    """
+    pass
+    #return row, col
+
+
+def checker(board):
+    """
+    checks the board to see if there are any playable spots left
+    :param board: the current state of the game board
+    :return: wether or not the board is full and the game is over
+    """
+    for x in range(len(board)-1):
+        for y in range(len(board[0])-1):
+            if board[x+1][y+1]=='$' or board[x+1][y+1]=='*' or board[x+1][y+1] == '$-' or board[x+1][y+1] == '*-':
+                return True
+    return False
+
+
+def end(scores, numP, board, players):
+    clear_player_turn(board)
+    t.pencolor('black')
+    if numP < 3:
+        players.append("")
+    if numP < 4:
+        players.append("")
+    if numP==2 and scores[0]==scores[1]:
+        error_text("It's a Tie", board)
+        time.sleep(5)
+        return
+    if scores[0] > scores[1]:
+        p1= players[0]
+        val1=scores[0]
+    else:
+        p1=players[1]
+        val1=scores[1]
+    if scores[2] > scores[3]:
+        p2=players[2]
+        val2=scores[2]
+    else:
+        p2 = players[3]
+        val2 = scores[3]
+    if val1>val2:
+        error_text(p1 + " Wins!!!", board)
+    elif val2>val1:
+        error_text(p2 + " Wins!!!", board)
+    else:
+        error_text("It's a Tie", board)
+    if numP == 3:
+        players.pop(3)
+    elif numP == 2:
+        players.pop(3)
+        players.pop(2)
+    time.sleep(5)
+
+
+def player_stats(game_mode, players, normal_scores, power_scores, mayhem_scores, scores):
+    t.reset()
+    turtle.setworldcoordinates(0, 0, 100, 100)
+    y = 95
+    t.up()
+    player_number = 0
+    for name in players:
+        score_set = []
+        t.goto(0, y)
+        t.write(name + ":", font=("OCR-A", 16, "normal"))
+        score = str(scores[player_number])
+        if game_mode == 0:
+            score_set += normal_scores[name]
+            mode = "normal"
+        elif game_mode == 1:
+            score_set += power_scores[name]
+            mode = "power ups"
+        elif game_mode == 2:
+            score_set += mayhem_scores[name]
+            mode = "mayhem"
+        if len(score_set) > 0:
+            t.goto(0, y-3)
+            num_games(len(score_set)+1, mode)
+            averages(score_set, y, score, mode)
+            t.goto(0, y-9)
+            last_game(score_set[-1], score)
+            t.goto(0, y - 12)
+            score_set.sort()
+            best_games(score_set, score)
+        else:
+            t.goto(0, y-3)
+            t.write("This is your first " + mode + " mode game so you don't exactly have too many stats.", font=("OCR-A", 16, "normal"))
+            t.goto(0, y-6)
+            t.write("But I guess your average school would be " + score + ".", font=("OCR-A", 16, "normal"))
+        player_number += 1
+        y -= 18
+
+
+def num_games(num, mode):
+    string = number_endings(num)
+    t.write("This is your" + string + " game of " + mode + "mode.", font=("OCR-A", 16, "normal"))
+
+
+def best_games(score_set, score):
+    if int(score) in score_set:
+        if score_set.index(int(score)) < len(score_set)/2:
+            string = number_endings(score_set.index(int(score)))
+            word = " worst game."
+        else:
+            score_set = score_set[::-1]
+            string = number_endings(score_set.index(int(score)))
+            word = " best game"
+        t.write("This is tied for your" + string + word, font=("OCR-A", 16, "normal"))
+    else:
+        score_set.append(int(score))
+        score_set.sort()
+        if score_set.index(int(score)) < len(score_set)/2:
+            string = number_endings(score_set.index(int(score)))
+            word = " worst game."
+        else:
+            score_set = score_set[::-1]
+            string = number_endings(score_set.index(int(score)))
+            word = " best game"
+        t.write("This is your" + string + word, font=("OCR-A", 16, "normal"))
+
+
+def number_endings(num):
+    if num == 0:
+        return ""
+    num = str(num + 1)
+    char = num[-1]
+    if char == '1':
+        return " " + num + 'st'
+    elif char == '2':
+        return " " + num + 'nd'
+    elif char == '3':
+        return " " + num + 'rd'
+    else:
+        return " " + num + 'th'
+
+
+def last_game(last_score, score):
+    if last_score > int(score):
+        t.write("Last game of this mode you scored " + str(last_score-int(score)) + " more points.", font=("OCR-A", 16, "normal"))
+    elif last_score < int(score):
+        t.write("Last game of this mode you scored " + str(int(score) - last_score) + " less points.", font=("OCR-A", 16, "normal"))
+    else:
+        t.write("Last game of this mode you got the same score as this game.", font=("OCR-A", 16, "normal"))
+
+
+def averages(score_set, y, score, mode):
+    average = int(sum(score_set) / len(score_set))
+    t.goto(0, y-6)
+    dif = int(score) - average
+    if dif > 0:
+        t.write("Your score of " + score + " is " + str(dif) + " above your average of " + str(average) + " for " + mode + " mode.", font=("OCR-A", 16, "normal"))
+    elif dif < 0:
+        t.write("Your score of " + score + " is " + str(dif*-1) + " below your average of " + str(average) + " for " + mode + " mode.", font=("OCR-A", 16, "normal"))
+    else:
+        t.write("Your score of " + score + " is " + str(dif) + " equal to your average for " + mode + " mode.", font=("OCR-A", 16, "normal"))
+
+
+
+def power_ups_on(board):
+    x=turtle.textinput("Game Mode", "Would you like to turn on power ups? (Enter Yes to turn them on or press enter to not)")
+    return check_yes(x, board)
+
+
+def mayhem_on(board):
+    x = turtle.textinput("Game Mode", "Would you like to turn on mayhem mode? (Enter Yes to turn them on or press enter to not)")
+    return check_yes(x, board)
+
+
+def check_yes(x, board):
+    try:
+        x = x.upper()
+    except:
+        exit()
+    if x != 'YES':
+        return False
+    error_text("Turned On", board)
+    return True
+
+
+def check_yes_no_print(x):
+    try:
+        x = x.upper()
+    except:
+        exit()
+    if x != 'YES':
+        return False
+    return True
+
+
+def power_init(board, boo):
+    if not boo:
+        spots = (len(board) - 2) * (len(board[0]) - 2)
+        spots //= 7
+        while spots > 0:
+            row = r.randint(1, len(board) - 2)
+            col = r.randint(1, len(board[0]) - 2)
+            if board[row][col] != '*':
+                board[row][col] = '*'
+                display_power_ups(row, col)
+                spots -= 1
+    else:
+        for row in range(1, len(board)-1):
+            for col in range(1, len(board[0])-1):
+                board[row][col] = '*'
+                display_power_ups(row, col)
+    return board
+
+
+def display_power_ups(row, col):
+    t.up()
+    t.goto(row * 100, col * 100)
+    one_digit('*')
+
+
+def clear_players(board):
+    t.goto(0,-1)
+    t.fillcolor("white")
+    t.begin_fill()
+    for x in range(2):
+        t.forward(len(board)*100)
+        t.right(90)
+        t.forward(150)
+        t.right(90)
+    t.end_fill()
+
+
+def draw_players(numP, board, scores, players):
+    t.up()
+    clear_players(board)
+    t.goto(0, -50)
+    t.down()
+    t.pencolor("red")
+    t.write(players[0] + ": %d" % scores[0], font=("OCR-A", 16, "normal"))
+    t.up()
+    t.goto((len(board)*100)/2, -50)
+    t.down()
+    t.pencolor("blue")
+    t.write(players[1] + ": %d"% scores[1], font=("OCR-A", 16, "normal"))
+    t.up()
+    if numP>2:
+        t.pencolor("green")
+        t.goto(0, -100)
+        t.down()
+        t.write(players[2] + ": %d" % scores[2], font=("OCR-A", 16, "normal"))
+        t.up()
+    if numP>3:
+        t.pencolor("purple")
+        t.goto((len(board) * 100) / 2, -100)
+        t.down()
+        t.write(players[3] + ": %d" % scores[3], font=("OCR-A", 16, "normal"))
+        t.up()
+    t.goto(-100,-100)
+    turtle.update()
+
+
+def player_turn(board, player):
+    """
+    writes who's turn it is on top of the board
+    :param board: game board so function knows where to write the text
+    :param player: # of player who's turn it is
+    """
+    clear_player_turn(board)
+    if len(board[0]) < 7:
+        t.goto(len(board)*50, (len(board[0])*100)+55)
+    else:
+        t.goto(len(board) * 50, (len(board[0]) * 100) + 47)
+    t.write(player+ "'s Turn", align='center', font=("OCR-A", 16, "normal"))
+    t.goto(-100, -100)
+
+
+def clear_player_turn(board):
+    t.up()
+    t.goto(((len(board)) * 40), ((len(board[0]) * 100) + 80))
+    t.fillcolor("white")
+    t.begin_fill()
+    for x in range(2):
+        t.forward(200)
+        t.right(90)
+        if len(board[0]) < 7:
+            t.forward(26)
+        else:
+            t.forward(33)
+        t.right(90)
+    t.end_fill()
+
+
+def error_text(string, board):
+    """
+    The text printed below whoever's turn it is. It is mostly error statements and power up statements.
+    :param string: The line being printed
+    :param board: the game board, needed for knowing where to print text.
+    """
+    clear_error_text(board)
+    t.up()
+    t.goto(len(board) * 50, (len(board[0]) * 100) + 10)
+    t.write(string, align='center', font=("OCR-A", 16, "normal"))
+    t.goto(-100,-100)
+    turtle.update()
+
+
+def clear_error_text(board):
+    """
+    Clears the text written by error_text
+    """
+    t.up()
+    t.goto(0, (len(board[0]) * 100) + 10)
+    t.fillcolor("white")
+    t.begin_fill()
+    for x in range(2):
+        t.forward(len(board)*100)
+        t.left(90)
+        t.forward(36)
+        t.left(90)
+    t.end_fill()
+    t.goto(-100, -100)
+    turtle.update()
+
+
+def pen_color(player):
+    if player == 0:
+        return 'red'
+    elif player == 1:
+        return 'blue'
+    elif player == 2:
+        return 'green'
+    elif player == 3:
+        return 'purple'
+    else:
+        return 'black'
+
+
+def rules():
+    """
+    Game rules, they will print if asked to be printed, then disappear once told.
+    """
+    rule=turtle.textinput("Game Rules", "Would you like to view the game rules?(Enter Yes to view or press enter to not)")
+    turtle.setworldcoordinates(0, 15, 100, 115)
+    if check_yes_no_print(rule):
+        x = 110
+        y = 2.5
+        f = 16
+        t.goto(0, x)
+        t.write("Game Rules:", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("Simplified version: turn based board game, highest score wins.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("More detailed version:", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("Players will take turns choosing spots on the board where they will have the sum of all 4 tiles", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("directly touching it added to their score and then that score gets placed on the board.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("If you choose a spot where their are no tiles with values on any direct sides of it,", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("then the tile's score will default to a value of 1.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("You cannot choose a spot on the boarder of the board,", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("and you can also not choose a spot already chosen.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("The game will end when all tiles have been chosen.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("There can be between 2 and 4 players per game.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("You can choose the size of the board between 3 and 10 tiles for the rows and columns.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("You will be prompted for a row/column, the spot (1, 1) is always the bottom left corner, ", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("and the spot (max width, max height) is always the top right corner, ", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("When creating a username and password case does matter, so 'hi' is not the same name as 'HI'.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("Power Ups Modes:", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("There are two different power ups modes, normal and mayhem with the only difference being", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("that in normal mode approximately 15% of tiles are power ups, whereas in mayhem 100% are.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("Power ups:", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("There are currently 14 different types of power ups.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("The simple ones are, score x 2, score negated, score - 10, and score + 10.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("More complicated ones include, eliminating any tile on the board, this stops the tile from being", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("playable, and subtracts whatever score was on the tile from the person's score.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("Random eliminations, which you get to choose the amount tiles randomly eliminated from the board.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("Next score negation where your score next turn will be negated.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("In the same vein, there's another power up which all opponents next scores are negated.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("Twice lost, the score that would have been added to your score instead is doubled and", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("you get to choose whose score it is subtracted from.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("Swap, choose two tiles and swap them, the owners of each of the tiles remains the same,", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("but the scores are swapped. If swapped with a playable tile, the new tile becomes playable", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("and the other tile that was playable before gains the score that was on on the other tile.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("Gain/lose tile, these will cause you to either gain a random, unoccupied tile, or lose a tile", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("you already own respectively.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("Betting, you enter in the amount you want to bet, up to 30, and you will get back", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("A random amount between 0 and twice what you bet.", font=("OCR-A", f, "normal"))
+        x -= y
+        t.goto(0, x)
+        t.write("When done reading rules, enter your number of players, and the game will begin.", font=("OCR-A", f, "normal"))
+
+
+def main():
+    """
+    This is the main method, it starts off by initializing the game, then it has a while loop that controls the
+    operations of every turn.
+    """
+    rules()
+    mayhem = False
+    turn = 0
+    neg = 0
+    user_pass, normal_scores, power_scores, mayhem_scores = file_reader()
+    scores = [0, 0, -99999, -99999]
+    negate = [0, 0, 0, 0]
+    p_spots = [[], [], [], []]
+    (numP, scores, players, user_pass) = player_num(scores, user_pass)
+    normal_scores, power_scores, mayhem_scores = output_prep(normal_scores, power_scores, mayhem_scores, players)
+    (board) = initialize_board()
+    draw_players(numP, board, scores, players)
+    draw_board(len(board), len(board[0]))
+    draw_1s(len(board), len(board[0]))
+    game_mode = 0
+    if power_ups_on(board):
+        game_mode += 1
+        mayhem = mayhem_on(board)
+        if mayhem:
+            game_mode += 1
+        board = power_init(board, mayhem)
+        time.sleep(1)
+        clear_error_text(board)
+    while checker(board):
+        current_player = turn % numP
+        if current_player == 0:
+            t.pencolor('red')
+            player_turn(board, players[current_player])
+            (board, row, col, scores, neg, p_spots, power_up) = calculate(board, numP, scores, neg, 1, p_spots, negate, players, mayhem)
+            t.pencolor('red')
+        elif current_player == 1:
+            t.pencolor('blue')
+            player_turn(board, players[current_player])
+            (board, row, col, scores, neg, p_spots, power_up) = calculate(board, numP, scores, neg, 2, p_spots, negate, players, mayhem)
+            t.pencolor('blue')
+        elif current_player == 2:
+            t.pencolor('green')
+            player_turn(board, players[current_player])
+            (board, row, col, scores, neg, p_spots, power_up) = calculate(board, numP, scores, neg, 3, p_spots, negate, players, mayhem)
+            t.pencolor('green')
+        elif current_player == 3:
+            t.pencolor('purple')
+            player_turn(board, players[current_player])
+            (board, row, col, scores, neg, p_spots, power_up) = calculate(board, numP, scores, neg, 4, p_spots, negate, players, mayhem)
+            t.pencolor('purple')
+        if neg > 0:
+            neg -= 1
+        scores[current_player] += board[row][col]
+        draw_number(row, col, board[row][col])
+        if power_up == "":
+            pass
+        elif power_up=='Choose X':
+            Xout(board, scores, p_spots, players[current_player])
+        elif power_up == 'Random X':
+            RandX(board, scores, p_spots, players[current_player])
+        elif power_up == 'Swap':
+            (board, scores, p_spots) = swap(board, p_spots, scores, players[current_player])
+        elif power_up == "Trap":
+            trap(board, players[current_player])
+        elif power_up == 'Gain Spot':
+            (p_spots, scores) = Gain_Spot(board, p_spots, current_player, scores)
+        elif power_up == 'Lose Spot':
+            Lose_Spot(board, current_player, p_spots, scores)
+        elif power_up == 'Betting':
+            betting(current_player + 1, scores, numP, board, players)
+        draw_players(numP, board, scores, players)
+        turn += 1
+        time.sleep(1.5)
+        clear_error_text(board)
+    end(scores, numP, board, players)
+    player_stats(game_mode, players, normal_scores, power_scores, mayhem_scores, scores)
+    normal_scores, power_scores, mayhem_scores = update_scores(game_mode, players, normal_scores, power_scores, mayhem_scores, scores)
+    write_file(len(user_pass), user_pass, normal_scores, power_scores, mayhem_scores)
+    turtle.done()
+
+
+main()
+exit()
