@@ -7,9 +7,10 @@ Start Date: 10/17/2018
 Finish Date: 10/18/2018
 
 Added the ability to create a profile. This is done through a system where there is a file named 'Usernames.txt'
-that the program will open up, read, and store in a dictionary. The game then runs through its normal operations 
+that the program will open up, read, and store in a dictionary. The game then runs through its normal operations
 and at the end will now show you some stats about previous games of that game mode.
-Also some bugs were added and then and then fixed. 
+Whoever goes first is now randomized as well.
+Also some bugs were added and then and then fixed.
 And there were a few minor optimization changes.
 """
 
@@ -879,7 +880,7 @@ def get_player_name(players, num, scores, board, user_pass):
     check = True
     try:
         while check:
-            name = turtle.textinput("Player %d" % num, "Enter your name, if you're new enter 'new'")
+            name = turtle.textinput("Player %d" % num, "Enter your name, if you're new enter 'new' to make a username")
             clear_error_text(board)
             if name.upper() == 'NEW':
                 user_pass, name = new_player(user_pass, board)
@@ -890,7 +891,7 @@ def get_player_name(players, num, scores, board, user_pass):
             elif name not in user_pass:
                 error_text("Username not found.", board)
             else:
-                password = turtle.textinput("Password", "Enter your password")
+                password = turtle.textinput(name, "Enter your password")
                 if password == user_pass[name]:
                     players.append(name)
                     scores[num - 1] = 0
@@ -922,6 +923,16 @@ def new_player(user_pass, board):
                 return user_pass, name
     except TypeError:
         exit()
+
+
+def randomize_players(players_list):
+    players = []
+    for x in range(len(players_list)):
+        y = r.randint(1, len(players_list))
+        name = players_list[y-1]
+        players.append(name)
+        players_list.pop(y-1)
+    return players
 
 
 """
@@ -1499,6 +1510,7 @@ def main():
     negate = [0, 0, 0, 0]
     p_spots = [[], [], [], []]
     (numP, scores, players, user_pass) = player_num(scores, user_pass)
+    players = randomize_players(players)
     normal_scores, power_scores, mayhem_scores = output_prep(normal_scores, power_scores, mayhem_scores, players)
     (board) = initialize_board()
     draw_players(numP, board, scores, players)
