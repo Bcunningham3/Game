@@ -1,5 +1,5 @@
 # Project-Elpis
-Written in Python 3.7
+Written in Python 3.7.
 My first attempt at a major project. I ran into many struggles and it was not easy, but most it was definitely fun. 
 The name Elpis comes from greek mythology, and is the personification of hope. 
 I thought this fit quite well with this particular project, as this project is basically the only thing that makes me even 
