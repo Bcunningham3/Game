@@ -1,9 +1,6 @@
-# Project-Elpis
+# Project-Game
 Written in Python 3.7.
-My first attempt at a major project. I ran into many struggles and it was not easy, but most it was definitely fun. 
-The name Elpis comes from greek mythology, and is the personification of hope. 
-I thought this fit quite well with this particular project, as this project is basically the only thing that makes me even 
-a little bit unique, and therefore is pretty much my only hope for an internship.
+My first attempt at a major project. I ran into many struggles and it was not easy, but I had a lot of fun writting it. 
 As for running the program, choose the most recent version, currently Version 0.3.1, and all you will have to do 
 is download and run the program for it to start working.
 There is all documentation and rules already in the program so any questions should be able to be answered there.
